@@ -1,21 +1,23 @@
 {-# LANGUAGE ExistentialQuantification #-}
-{-# LANGUAGE ScopedTypeVariables #-}
+{-# LANGUAGE ScopedTypeVariables       #-}
 module Main where
 
-import Database.Schema.Migrations.Backend.HDBC (hdbcBackend)
-import Database.Schema.Migrations.Test.BackendTest as BackendTest
+import           Database.Schema.Migrations.Backend.HDBC     (hdbcBackend)
+import           Database.Schema.Migrations.Test.BackendTest as BackendTest
 
-import Control.Exception (catch, catches, finally, Handler(..), SomeException )
-import Database.HDBC ( IConnection(disconnect) )
-import qualified Database.HDBC as HDBC
-import qualified Database.HDBC.PostgreSQL as PostgreSQL
-import System.Exit
-import System.IO ( stderr )
-import System.Process ( system )
-import Test.HUnit
+import           Control.Exception                           (Handler (..),
+                                                              SomeException,
+                                                              catch, catches,
+                                                              finally)
+import           Database.HDBC                               (IConnection (disconnect))
+import qualified Database.HDBC                               as HDBC
+import qualified Database.HDBC.PostgreSQL                    as PostgreSQL
+import           System.Exit
+import           System.IO                                   (stderr)
+import           System.Process                              (system)
+import           Test.HUnit
 
-data PostgreSQLBackendConnection =
-    forall a. HDBC.IConnection a => HDBCConnection a
+data PostgreSQLBackendConnection = forall a . HDBC.IConnection a => HDBCConnection a
 
 instance BackendConnection PostgreSQLBackendConnection where
     supportsTransactionalDDL = const True

@@ -4,3 +4,4 @@ cabal.project
 dist
 dist-newstyle
 .*.swp
+result
