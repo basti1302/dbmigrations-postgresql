@@ -3,12 +3,14 @@ let
   inherit ( nixpkgs ) pkgs;
   inherit ( pkgs ) haskellPackages;
 
-  project = import ./release.nix;
+  project = import ./nixpkgs.nix;
 in
 pkgs.stdenv.mkDerivation {
   name = "dbmigrations-postgresql";
-  buildInputs = project.env.nativeBuildInputs ++ [
-    haskellPackages.cabal-install
-    haskellPackages.ghcid
+  buildInputs = project.dbmigrations-postgresql.nativeBuildInputs ++ [
+    pkgs.postgresql
+    pkgs.haskellPackages.cabal-install
+    pkgs.haskellPackages.ghc
+    pkgs.haskellPackages.ghcid
   ];
 }

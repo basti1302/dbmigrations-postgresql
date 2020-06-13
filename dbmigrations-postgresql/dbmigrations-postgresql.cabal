@@ -27,10 +27,9 @@ Source-Repository head
 
 Executable moo-postgresql
   default-language: Haskell2010
-  Build-Depends:
-    base >= 4 && < 5,
-    dbmigrations >= 2,
-    HDBC-postgresql
+  Build-Depends:    base >= 4 && < 5
+                  , dbmigrations
+                  , HDBC-postgresql
 
   if impl(ghc >= 6.12.0)
     ghc-options: -threaded -Wall -fwarn-tabs -funbox-strict-fields

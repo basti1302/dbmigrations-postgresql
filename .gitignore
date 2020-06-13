@@ -1,6 +1,11 @@
+.*.swp
 .cabal-sandbox
 cabal.sandbox.config
-cabal.project
+dist
+dist-newstyle
+result
+
+.cabal-sandbox
 dist
 dist-newstyle
 .*.swp
